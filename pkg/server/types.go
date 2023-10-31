@@ -1,10 +1,11 @@
 package server
 
 type PingResponse struct {
-	Addr    string `json:"addr"`
-	PkgSent int    `json:"PkgSent"`
-	AvgRtt  int    `json:"avgCost"`
-	MaxRtt  int    `json:"MaxRtt"`
-	MinRtt  int    `json:"MinRtt"`
-	Rtts    []int  `json:"costs"`
+	Addr    string `json:"addr,omitempty"`
+	PkgSent int    `json:"pkgSent,omitempty"`
+	PkgRecv int    `json:"pkgRecv,omitempty"`
+	AvgRtt  int    `json:"avgRtt,omitempty"`
+	MaxRtt  int    `json:"maxRtt,omitempty"`
+	MinRtt  int    `json:"minRtt,omitempty"`
+	Rtts    []int  `json:"rtts,omitempty"`
 }

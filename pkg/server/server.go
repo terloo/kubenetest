@@ -51,6 +51,7 @@ func pingHandle(w http.ResponseWriter, r *http.Request) {
 	resp := &PingResponse{
 		Addr:    stats.Addr,
 		PkgSent: stats.PacketsSent,
+		PkgRecv: stats.PacketsRecv,
 		AvgRtt:  int(stats.AvgRtt.Milliseconds()),
 		MaxRtt:  int(stats.MaxRtt.Milliseconds()),
 		MinRtt:  int(stats.MinRtt.Milliseconds()),
