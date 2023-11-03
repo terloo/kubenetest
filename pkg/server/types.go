@@ -9,3 +9,10 @@ type PingResponse struct {
 	MinRtt  int    `json:"minRtt,omitempty"`
 	Rtts    []int  `json:"rtts,omitempty"`
 }
+
+type InfraResponse struct {
+	Bridgenf              string `json:"bridgenf,omitempty"`
+	Bridgenf6             string `json:"bridgenf6,omitempty"`
+	Ipv4Forward           string `json:"ipv4Forward,omitempty"`
+	Ipv6DefaultForwarding string `json:"ipv6DefaultForwarding,omitempty"`
+}

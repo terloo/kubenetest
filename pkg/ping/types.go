@@ -1,7 +1,11 @@
 package ping
 
 type PingTestResult struct {
-	AvgRtt int
-	MaxRtt int
+	Addr    string
 	PkgSent int
+	PkgRecv int
+	AvgRtt  int
+	MaxRtt  int
+	MinRtt  int
+	Rtts    []int
 }

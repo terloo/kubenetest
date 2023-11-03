@@ -24,7 +24,7 @@ func NewPingTester(localIP string, icmpID int16) *PingTester {
 	return p
 }
 
-func (t *PingTester) Ping(addr string) (*probing.Statistics, error) {
+func (t *PingTester) TestPing(addr string) (*PingTestResult, error) {
 
 	pinger, err := probing.NewPinger(addr)
 	if err != nil {
@@ -39,5 +39,22 @@ func (t *PingTester) Ping(addr string) (*probing.Statistics, error) {
 		return nil, err
 	}
 
-	return pinger.Statistics(), nil
+	stats := pinger.Statistics()
+
+	rtts := make([]int, len(stats.Rtts))
+	for i, rtt := range stats.Rtts {
+		rtts[i] = int(rtt.Milliseconds())
+	}
+
+	result := &PingTestResult{
+		Addr:    stats.Addr,
+		PkgSent: stats.PacketsSent,
+		PkgRecv: stats.PacketsRecv,
+		AvgRtt:  int(stats.AvgRtt.Milliseconds()),
+		MaxRtt:  int(stats.MaxRtt.Milliseconds()),
+		MinRtt:  int(stats.MinRtt.Milliseconds()),
+		Rtts:    rtts,
+	}
+
+	return result, nil
 }
